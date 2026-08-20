@@ -22,7 +22,13 @@ assert len(parts) == 3 and not parts[0].strip(), "SKILL.md needs YAML frontmatte
 frontmatter, body = parts[1], parts[2]
 assert re.search(r"^name: write-goal$", frontmatter, re.MULTILINE)
 assert re.search(r"^description:\s*\S", frontmatter, re.MULTILINE)
-assert re.search(r"^allowed-tools:\s*\S", frontmatter, re.MULTILINE)
+allowed_tools = re.search(r"^allowed-tools:\s*(\S.*)$", frontmatter, re.MULTILINE)
+assert allowed_tools and allowed_tools.group(1).split() == [
+    "Read",
+    "Grep",
+    "Glob",
+    "AskUserQuestion",
+], "allowed-tools must use Claude's canonical space-separated syntax"
 assert body.strip(), "SKILL.md needs an instruction body"
 assert len(text.splitlines()) < 500, "SKILL.md must stay below 500 lines"
 
