@@ -3,10 +3,12 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/edcadet10/write-goal/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/edcadet10/write-goal/ci.yml?branch=main&amp;style=flat-square&amp;label=CI" alt="CI status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-4ecca3?style=flat-square" alt="MIT license"></a>
-  <a href="https://docs.claude.com/en/docs/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-skill-7c5cff?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code skill"></a>
+  <a href="https://code.claude.com/docs/en/skills"><img src="https://img.shields.io/badge/Claude%20Code-skill-7c5cff?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code skill"></a>
   <img src="https://img.shields.io/badge/pairs%20with-%2Fgoal-5eead4?style=flat-square" alt="Pairs with /goal">
   <img src="https://img.shields.io/badge/output-one%20provable%20%2Fgoal%20line-f5b14e?style=flat-square" alt="Output: one provable /goal line">
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/contributions-welcome-22d3ee?style=flat-square" alt="Contributions welcome"></a>
 </p>
 
 <p align="center"><b>Hand it a rough task. Get back one <code>/goal</code> line that Claude can actually prove it finished.</b></p>
@@ -96,6 +98,10 @@ Read it back and you can see the four ingredients: the end state (modules under 
 ## the one rule it never breaks
 
 The proof has to be something Claude prints, not something the evaluator goes and checks. That single fact is what makes goals terminate instead of spinning. Every line the skill writes is built around it.
+
+## contribute
+
+Contributions are welcome. Read the [guide](CONTRIBUTING.md), open an [issue](https://github.com/edcadet10/write-goal/issues/new/choose), or discuss broad changes in [Discussions](https://github.com/edcadet10/write-goal/discussions). Run `./scripts/check.sh` before opening a PR.
 
 ## part of my arsenal
 
