@@ -1,11 +1,16 @@
 """Check cross-host package identity and catalog paths without native clients."""
 
 import json
+import importlib.util
 from pathlib import Path
+import tempfile
 import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location("native_check", ROOT / "scripts/check_plugins.py")
+native_check = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(native_check)
 
 
 class PluginPackageTests(unittest.TestCase):
@@ -28,6 +33,20 @@ class PluginPackageTests(unittest.TestCase):
         codex = json.loads((plugin_root / ".codex-plugin/plugin.json").read_text(encoding="utf-8"))
         skill = plugin_root / codex["skills"] / "write-goal/SKILL.md"
         self.assertEqual(skill.resolve(), ROOT / "skills/write-goal/SKILL.md")
+
+    def test_content_comparison_accepts_newlines_and_detects_changed_or_missing_files(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            first, second = Path(temporary) / "first", Path(temporary) / "second"
+            first.mkdir()
+            second.mkdir()
+            (first / "SKILL.md").write_bytes(b"one\ntwo\n")
+            (second / "SKILL.md").write_bytes(b"one\r\ntwo\r\n")
+            self.assertEqual(native_check.package_content(first), native_check.package_content(second))
+            (second / "SKILL.md").write_bytes(b"one\nchanged\n")
+            self.assertNotEqual(native_check.package_content(first), native_check.package_content(second))
+            (second / "SKILL.md").write_bytes(b"one\ntwo\n")
+            (first / "openai.yaml").write_bytes(b"interface: {}\n")
+            self.assertNotEqual(native_check.package_content(first), native_check.package_content(second))
 
 
 if __name__ == "__main__":
