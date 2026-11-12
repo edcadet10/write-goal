@@ -100,6 +100,8 @@ cannot be certified rather than inventing an authenticity query.
   such as `npm test` seems likely.
 - Preserve the user's constraints exactly. Do not silently strengthen them; for
   example, "do not modify production files" does not mean "modify only tests."
+  Copy explicit constraint sentences unchanged. Put additional safeguards in
+  separate sentences rather than rewriting or joining the user's constraints.
 - Do not insert deployment, spending, outreach, or other external actions that
   the user did not authorize. Preserve approval gates and human-only steps.
 - If a placeholder remains, the draft is a template, not ready to activate.
@@ -112,6 +114,10 @@ cannot be certified rather than inventing an authenticity query.
 
 If Step 1 requires clarification, output only its one question. Otherwise print
 the single-line condition in one copy-paste block (with `/goal` only for Claude):
+
+Apply host syntax after composing the condition: for Claude Code, prepend the
+literal `/goal ` and verify it starts the line. A Claude-specific note after the
+block does not replace that prefix. For Codex, leave the prefix off.
 
 ```text
 /goal <the condition you built>
