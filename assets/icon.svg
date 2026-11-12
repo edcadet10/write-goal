@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Write Goal: a target with a verified center">
+  <rect width="512" height="512" rx="96" fill="#11161f"/>
+  <g transform="translate(256,256)">
+    <circle r="178" fill="none" stroke="#283342" stroke-width="10"/>
+    <path d="M0,-178 A178,178 0 1 1 -178,0" fill="none" stroke="#4ecca3" stroke-width="10" stroke-linecap="round"/>
+    <path d="M-178,0 A178,178 0 0 1 -154.153,-89" fill="none" stroke="#f5b14e" stroke-width="10" stroke-linecap="round"/>
+    <circle r="124" fill="none" stroke="#344255" stroke-width="8"/>
+    <circle r="68" fill="none" stroke="#344255" stroke-width="8"/>
+    <path d="M-40,5 l26,30 l58,-72" fill="none" stroke="#4ecca3" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
