@@ -1,9 +1,8 @@
 {
   "claim": "The same GitHub-hosted catalog can install the unchanged skill in Claude Code and Codex.",
-  "kill_criterion": "Either client rejects the catalog, fails to enable the plugin, or caches different skill bytes.",
-  "source": "local checkout before GitHub publication",
+  "kill_criterion": "Either client rejects the catalog, fails to enable the plugin, or caches different skill package content after text newline normalization.",
+  "source": "Local checkout and edcadet10/write-goal#improve-github-installation (GitHub branch bd5c43e)",
   "skill_git_blob": "196e128a21f0b6c14c2ed5f469a827a0082dd0ae",
-  "skill_sha256": "23a19bbf26f32167dcd87d51f02445630a3bcc116b5fcc64d47bbcc07263c4bf",
   "claude": {
     "version": "2.1.316",
     "strict_manifest_validation": true,
@@ -11,14 +10,27 @@
     "inventory_skills": [
       "write-goal"
     ],
-    "cached_skill_matches": true
+    "cached_package_content_matches": true
   },
   "codex": {
     "version": "0.166.0",
     "installed": true,
     "enabled": true,
-    "cached_skill_matches": true
+    "cached_package_content_matches": true
   },
   "scope": "Fresh temporary host profiles; no model inference. Not a measurement of star growth or model behavior.",
-  "remote_github_installation": "pending"
+  "remote_github_installation": "passed for both hosts in fresh temporary profiles",
+  "skill_sha256_lf": "ab796352f2c60501dd0fdec46616ff3308d1a21f621d7bb55f97193dabe99a51",
+  "initial_harness_failure": {
+    "observation": "A raw-byte assertion rejected the Claude GitHub installation: 9436 installed bytes versus 9600 workspace bytes. Text was identical after newline normalization.",
+    "correction": "Compare the complete package after normalizing UTF-8 Markdown/YAML newlines. All other content and filenames remain exact.",
+    "negative_controls": "A changed text line and a missing metadata file both fail the comparison.",
+    "outcome": "Both native GitHub installs passed the corrected content invariant."
+  },
+  "limitations": [
+    "Model inference was not invoked.",
+    "GitHub Actions runs portable package tests; native client smoke tests were run locally on Windows.",
+    "Native manifest validation reports a nonblocking directory icon advisory; no public-directory submission is claimed.",
+    "No effect on star growth has been measured."
+  ]
 }
