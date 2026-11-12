@@ -1,6 +1,6 @@
 {
   "name": "write-goal",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Provider-neutral goal writing with observable proof and optional application adapters.",
   "author": {
     "name": "Ed Cadet",
@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Write Goal",
     "shortDescription": "A finish line you can prove",
-    "longDescription": "Write one measurable completion condition with observable proof, preserved constraints, and a stopping boundary. The shared instructions are AI-agnostic; optional adapters provide Claude Code syntax or Codex goal-tool behavior. Plain text remains the default for other applications.",
+    "longDescription": "Write one measurable completion condition with observable proof, preserved constraints, and a stopping boundary. Use the AI-agnostic instructions as prompt context in your chosen assistant. Plain text is the shared default; native application integrations are optional.",
     "developerName": "Ed Cadet",
     "category": "Productivity",
     "capabilities": [

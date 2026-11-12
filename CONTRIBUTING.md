@@ -4,6 +4,9 @@ Thanks for helping make `write-goal` sharper and easier to trust. Documentation,
 portable installer fixes, adversarial examples, and focused skill improvements
 are welcome.
 
+The shared workflow and documentation are AI-agnostic. Contributors may use
+their chosen assistant or work without AI; no model provider is required.
+
 ## Start here
 
 - Open a focused pull request directly for a small fix.
@@ -28,7 +31,9 @@ The check validates skill structure, repository links, the SVG banner, and
 isolated installations for both hosts. CI also checks Bash syntax and runs
 the suite on Windows, macOS, and Linux with Python 3.10 and 3.12.
 
-For plugin packaging changes, also run the real native clients in isolated
+### Optional application-adapter checks
+
+For changes to native adapter packaging, also run the corresponding real clients in isolated
 temporary profiles (requires Claude Code and Codex CLI on your PATH):
 
 ```bash
@@ -62,6 +67,9 @@ request:
 Show the actual generated condition for the first example and name the host.
 Use the [evaluation guide](evals/README.md) for broader behavior changes. Model
 outputs need semantic review; text matching alone does not prove correctness.
+An independent evaluator can be any suitable assistant or reviewer. The named
+applications in a case identify its formatting target, not the evaluator's
+required model or provider.
 
 ## Design guardrails
 

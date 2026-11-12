@@ -6,11 +6,9 @@
   <a href="https://github.com/edcadet10/write-goal/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/edcadet10/write-goal/ci.yml?branch=main&amp;style=flat-square&amp;label=CI" alt="CI status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-4ecca3?style=flat-square" alt="MIT license"></a>
   <img src="https://img.shields.io/badge/instructions-AI%20agnostic-4ecca3?style=flat-square" alt="AI-agnostic instructions">
-  <a href="https://code.claude.com/docs/en/skills"><img src="https://img.shields.io/badge/Claude%20Code-compatible-7c5cff?style=flat-square" alt="Claude Code compatible"></a>
-  <a href="https://learn.chatgpt.com/docs/build-skills"><img src="https://img.shields.io/badge/Codex-compatible-4ecca3?style=flat-square" alt="Codex compatible"></a>
 </p>
 
-<p align="center"><b>One measurable goal, with the evidence needed to prove it.</b><br>Provider-neutral instructions. Optional adapters for Claude Code and Codex.</p>
+<p align="center"><b>AI-agnostic goal writing: one measurable goal with observable proof.</b><br>Use the shared instructions with your chosen assistant. Native integrations are optional.</p>
 
 ## what it does
 
@@ -21,34 +19,30 @@ Give Write Goal a rough task. It drafts one completion condition with four parts
 - the user's constraints and approval gates;
 - a stopping boundary that does not get confused with success.
 
-The shared [skill instructions](skills/write-goal/SKILL.md) work as a reusable
-prompt independently of an AI model or provider. Applications that load Agent
-Skills can load the folder; other assistants can use the same instructions as
-prompt context. Native installation is tested for Claude Code and Codex.
+The shared [skill instructions](skills/write-goal/SKILL.md) are provider-neutral
+text. They do not require an account with a particular AI vendor, a specific
+model, or a native goal command. The assistant you choose supplies its own model
+access and capabilities.
 
-The [application adapters](skills/write-goal/references/hosts.md) choose syntax
-from the destination application, rather than the model's name. A Claude model
-in a plain API chat receives plain text. A native Claude Code goal receives a
-`/goal` prefix. Codex receives plain completion text and uses actual goal tools
-only when activation is explicitly requested and available.
+## use with your chosen assistant
 
-## before and after
+1. Supply the shared instructions as prompt context, or load the entire skill
+   folder if your application supports Agent Skills.
+2. Describe the desired result and any constraints, deadline, or turn limit.
+3. Receive one plain completion condition. Replace any unknown-check placeholder
+   before asking the assistant to act on it.
 
-**Request:** "All 14 parser fixtures must pass. Do not modify production files.
-Stop after 9 turns. The check is `python -m unittest discover -s tests/parser`."
+The [optional application adapters](skills/write-goal/references/hosts.md)
+provide native formatting when you want it. Their requirements apply only to
+the selected application; the model provider does not select an adapter.
 
-**Plain draft — usable in either assistant:**
+## optional native integrations
 
-```text
-All 14 parser fixtures pass, proven by actual `python -m unittest discover -s tests/parser` output showing every fixture passing with exit status 0. Do not modify production files. Do not weaken verification. Stop after 9 turns and report any unmet criteria without treating the stopping boundary as achievement.
-```
+The following integrations are tested conveniences. The shared prompt workflow
+above works without installing either client. These are application names, not
+requirements to use a particular model provider.
 
-For a native Claude Code goal, the adapter adds `/goal `. You can request plain
-text in any application. If a check is unknown, the draft contains a visible
-placeholder to replace before activation. A task with no concrete finish line
-gets one clarifying question.
-
-## install in Claude Code
+### Claude Code
 
 In your terminal:
 
@@ -59,7 +53,7 @@ claude plugin install write-goal --marketplace edcadet10/write-goal
 Start a new session and invoke `/write-goal:write-goal <rough task>`.
 See [Claude's plugin installation guide](https://code.claude.com/docs/en/plugins/install).
 
-## install in Codex
+### Codex
 
 In your terminal:
 
@@ -74,7 +68,7 @@ The catalog is hosted in this GitHub repository and is separate from a public
 plugin-directory listing. Native installation was tested with Claude Code
 2.1.316 and Codex CLI 0.166.0.
 
-## standalone skill
+## optional standalone installation
 
 With Python 3.10+ and Git:
 
@@ -120,10 +114,10 @@ goal without an explicit request. Unknown applications acquire no assumed
 slash commands, tool API, permissions, hooks, or scheduler. The skill does not
 continue after a session ends or guarantee outcomes controlled by other people.
 
-For native Claude Code `/goal`, workspace trust and permitted hooks are host
-requirements. The evaluator uses evidence already surfaced in the conversation;
-see the [official goal documentation](https://code.claude.com/docs/en/goal).
-Codex and other applications retain their own capabilities and permissions.
+Application-specific activation rules are documented in the optional
+[adapter reference](skills/write-goal/references/hosts.md). Every application
+retains its own capabilities and permissions. A draft does not create tools,
+grant access, or start a background worker.
 
 ## testing and contributing
 

@@ -1,6 +1,6 @@
 {
   "name": "write-goal",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "displayName": "Write Goal",
   "description": "Provider-neutral goal writing with observable proof and optional application adapters.",
   "author": {

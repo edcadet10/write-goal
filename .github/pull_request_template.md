@@ -6,6 +6,8 @@
 
 <!-- Describe the behavior and why it belongs in write-goal. -->
 
+<!-- Keep shared behavior and documentation provider-neutral; label any native application scope. -->
+
 ## Behavioral example
 
 <!-- For skill changes, name the host and show a fictional task and actual generated condition. -->
