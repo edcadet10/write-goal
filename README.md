@@ -18,7 +18,32 @@
 
 ## quick start
 
-Requires Python 3.10+ and Git. The same package installs on Windows, macOS, and Linux.
+Install directly from GitHub through your host's plugin manager. Python is
+needed only for the standalone installer below.
+
+**Claude Code — in your terminal:**
+
+```bash
+claude plugin install write-goal --marketplace edcadet10/write-goal
+```
+
+Start a new Claude session, then invoke `/write-goal:write-goal <rough task>`.
+See [Claude's plugin installation guide](https://code.claude.com/docs/en/plugins/install).
+
+**Codex — in your terminal:**
+
+```bash
+codex plugin marketplace add edcadet10/write-goal
+codex plugin add write-goal@write-goal
+```
+
+Start a new session and select the plugin's Write Goal skill. The catalog is
+hosted in this repository; it is separate from a listing in the public plugin
+directory. See [OpenAI's plugin documentation](https://developers.openai.com/plugins/build/plugins).
+Native installation was tested with Claude Code 2.1.316 and Codex CLI 0.166.0.
+Choose either plugin or standalone installation to avoid duplicate skill entries.
+
+**Standalone skill — Python 3.10+ and Git:**
 
 ```bash
 git clone https://github.com/edcadet10/write-goal.git
@@ -35,6 +60,13 @@ entrypoint remains available and forwards the same options.
 | --- | --- | --- |
 | Claude Code | `/write-goal <rough task>` | One `/goal <condition>` line |
 | Codex | `$write-goal <rough task>` | One plain completion condition for the host's available goal tools |
+
+These short invocation names apply to standalone installations. Claude plugin
+skills use the `/write-goal:write-goal` namespace shown above.
+
+For a manual installation without Python, download the skill-only ZIP from
+[Releases](https://github.com/edcadet10/write-goal/releases/latest) and extract
+its `write-goal/` folder into your host's skills directory listed below.
 
 The skill drafts by default. It starts no loop, executes no checks, and
 replaces no active goal unless you explicitly request activation. It does not
@@ -90,8 +122,8 @@ flowchart LR
     T(["rough task"]) --> M["measurable<br/>end state"]
     T --> P["transcript-visible<br/>proof"]
     T --> C["constraints"]
-    T --> K["turn cap"]
-    M --> G(["one /goal line<br/>Claude can prove"])
+    T --> K["stopping boundary"]
+    M --> G(["one provable<br/>completion condition"])
     P --> G
     C --> G
     K --> G
@@ -179,7 +211,7 @@ user's constraints, approval gates, and chosen host.
 
 ## contribute
 
-Contributions are welcome. Read the [guide](CONTRIBUTING.md), open an [issue](https://github.com/edcadet10/write-goal/issues/new/choose), or discuss broad changes in [Discussions](https://github.com/edcadet10/write-goal/discussions). Run `./scripts/check.sh` before opening a PR.
+Contributions are welcome. Read the [guide](CONTRIBUTING.md), open an [issue](https://github.com/edcadet10/write-goal/issues/new/choose), or discuss broad changes in [Discussions](https://github.com/edcadet10/write-goal/discussions). Run `python scripts/check.py` before opening a PR.
 
 ## part of my arsenal
 

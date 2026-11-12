@@ -28,6 +28,18 @@ The check validates skill structure, repository links, the SVG banner, and
 isolated installations for both hosts. CI also checks Bash syntax and runs
 the suite on Windows, macOS, and Linux with Python 3.10 and 3.12.
 
+For plugin packaging changes, also run the real native clients in isolated
+temporary profiles (requires Claude Code and Codex CLI on your PATH):
+
+```bash
+claude plugin validate --strict .
+python scripts/check_plugins.py
+```
+
+The native smoke test installs from the checkout, checks the host inventory,
+and compares the installed skill bytes with the source. It does not invoke a
+model. Use `--claude` or `--codex` to provide a client path when needed.
+
 For behavior changes, include at least two fictional examples in the pull
 request:
 
