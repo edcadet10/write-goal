@@ -1,6 +1,6 @@
 {
   "name": "write-goal",
-  "description": "Provable goal drafts for Claude Code and Codex, maintained on GitHub.",
+  "description": "AI-agnostic goal writing with native Claude Code and Codex installation.",
   "owner": {
     "name": "Ed Cadet"
   },
@@ -8,7 +8,7 @@
     {
       "name": "write-goal",
       "source": "./",
-      "description": "Turn a rough task into one measurable goal with observable proof."
+      "description": "Draft one provable goal with provider-neutral instructions."
     }
   ]
 }

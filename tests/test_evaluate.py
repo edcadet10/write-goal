@@ -15,7 +15,7 @@ spec.loader.exec_module(evaluation)
 class EvaluationTests(unittest.TestCase):
     def setUp(self):
         self.cases = json.loads((ROOT / "evals/cases.json").read_text(encoding="utf-8"))
-        self.responses = json.loads((ROOT / "evals/results/2026-11-11.json").read_text(encoding="utf-8"))
+        self.responses = json.loads((ROOT / "evals/results/2026-11-12.json").read_text(encoding="utf-8"))
         self.case = self.cases[0]
         self.response = self.responses[self.case["id"]]
 
@@ -40,6 +40,18 @@ class EvaluationTests(unittest.TestCase):
         case = next(case for case in self.cases if case.get("question"))
         self.assertEqual(evaluation.grade(case, evaluation.QUESTION), [])
         self.assertTrue(evaluation.grade(case, evaluation.QUESTION + " Also, what tests?"))
+
+    def test_plain_text_request_overrides_native_host_format(self):
+        case = next(case for case in self.cases if case["id"] == "explicit-plain-in-claude-code")
+        response = self.responses[case["id"]]
+        self.assertEqual(evaluation.grade(case, response), [])
+        self.assertTrue(evaluation.grade(case, response.replace("```text\n", "```text\n/goal ", 1)))
+
+    def test_model_brand_does_not_select_a_native_application_wrapper(self):
+        case = next(case for case in self.cases if case["id"] == "model-name-is-not-host")
+        response = self.responses[case["id"]]
+        self.assertEqual(evaluation.grade(case, response), [])
+        self.assertTrue(evaluation.grade(case, response.replace("```text\n", "```text\n/goal ", 1)))
 
 
 if __name__ == "__main__":

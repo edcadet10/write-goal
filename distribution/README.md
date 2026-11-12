@@ -1,14 +1,15 @@
 # Write Goal
 
 Turn a rough task into one measurable completion condition with observable
-proof, preserved constraints, and a stopping boundary. Write Goal is a skill
-for Claude Code and Codex. It drafts by default; activating a goal requires an
-explicit request.
+proof, preserved constraints, and a stopping boundary. Write Goal has AI-agnostic
+instructions with optional Claude Code and Codex application adapters. It drafts
+by default; activating a goal requires an explicit request.
 
-Ask Write Goal to draft or refine a completion condition. Claude Code receives
-one `/goal` line; Codex receives plain completion text. If the task has no
+Ask Write Goal to draft or refine a completion condition. Plain text is the
+shared default; the native Claude Code adapter adds `/goal`. If the task has no
 concrete finish line, the skill asks one clarifying question. Unknown checks
-remain visible placeholders to replace before activation.
+remain visible placeholders to replace before activation. The destination
+application determines syntax independently of the AI model's brand.
 
 The package contains instructions and presentation metadata, with no bundled
 MCP servers or hooks. Your host provides model access and any permitted tools.

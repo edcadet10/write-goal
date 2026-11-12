@@ -1,9 +1,10 @@
 # Behavioral evaluation
 
-Package CI cannot establish whether a model follows a skill. These ten
+Package CI cannot establish whether a model follows a skill. These fourteen
 fictional requests exercise known and unknown checks, vague or missing tasks,
 host selection, exact constraints, changing queues, external deadlines, human
-approval, and invented acceptance criteria.
+approval, invented acceptance criteria, a generic assistant, and the distinction
+between a model provider and its destination application.
 
 Give an independent evaluator the skill and only the `id`, `host`, `request`,
 and `context` fields from [cases.json](cases.json). Treat every case as a fresh
@@ -28,3 +29,5 @@ catalog. Use only fictional or explicitly shareable data.
 
 The [2026-11-11 record](results/2026-11-11.md) preserves the observed failures,
 corrections, raw outputs, and final affected-case retests.
+The [2026-11-12 record](results/2026-11-12.md) covers the provider-neutral shared
+workflow and optional application adapters.

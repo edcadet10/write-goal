@@ -2,7 +2,9 @@
 
 import importlib.util
 import json
+import posixpath
 from pathlib import Path
+import re
 import shutil
 import tempfile
 import unittest
@@ -48,6 +50,17 @@ class DistributionTests(unittest.TestCase):
         builder.build(self.source, output)
         with zipfile.ZipFile(output) as archive:
             self.assertFalse(any(archive.read(name) == b"do not distribute" for name in archive.namelist()))
+
+    def test_packaged_skill_can_resolve_its_adapter_reference(self):
+        output = self.base / "plugin.zip"
+        builder.build(self.source, output)
+        with zipfile.ZipFile(output) as archive:
+            skill_path = "skills/write-goal/SKILL.md"
+            targets = re.findall(r"\[[^]]*\]\(([^)]+)\)", archive.read(skill_path).decode("utf-8"))
+            self.assertTrue(targets, "The shared skill must expose its optional application adapter")
+            for target in targets:
+                resolved = posixpath.normpath(posixpath.join(posixpath.dirname(skill_path), target))
+                self.assertIn(resolved, archive.namelist(), f"Missing adapter resource: {target}")
 
     def test_inconsistent_version_and_missing_asset_fail_before_output(self):
         manifest = self.source / ".codex-plugin/plugin.json"
