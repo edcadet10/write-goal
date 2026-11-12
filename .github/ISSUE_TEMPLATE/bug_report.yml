@@ -24,7 +24,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Claude Code version, operating system, and installation method.
+      description: Host (Claude Code or Codex) and version, Python version, operating system, and installation method.
     validations:
       required: true
   - type: checkboxes

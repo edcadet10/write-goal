@@ -8,13 +8,13 @@
 
 ## Behavioral example
 
-<!-- For skill changes, show a fictional rough task and the resulting /goal line. -->
+<!-- For skill changes, name the host and show a fictional task and actual generated condition. -->
 
 ## Verification
 
-- [ ] `./scripts/check.sh` passes.
+- [ ] `python scripts/check.py` passes.
 - [ ] Behavior changes include a successful case and a vague-task case.
-- [ ] Generated output remains one provable `/goal` condition under 4,000 characters.
-- [ ] Transcript-visible proof, constraints, and a finite turn cap are preserved.
+- [ ] Generated output remains one provable condition under 4,000 characters with the correct host syntax.
+- [ ] Actual transcript-visible proof, explicit constraints, approval gates, and the user's stopping boundary are preserved.
 - [ ] Documentation was updated where needed.
 - [ ] No credentials, private prompts, or proprietary workspace data were added.

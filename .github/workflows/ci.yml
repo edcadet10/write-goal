@@ -14,11 +14,23 @@ concurrency:
 
 jobs:
   validate:
-    name: Validate and smoke-test
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.10', '3.12']
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
       - name: Run repository checks
-        run: ./scripts/check.sh
+        run: python scripts/check.py
+      - name: Check shell entrypoints
+        shell: bash
+        run: bash -n install.sh scripts/check.sh
