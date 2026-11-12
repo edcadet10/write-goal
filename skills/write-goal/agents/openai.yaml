@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Goal"
+  short_description: "Draft one measurable goal with observable proof"
+  default_prompt: "Use $write-goal to turn my rough task into one provable completion condition."

@@ -1,25 +1,66 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="write-goal — turn a vague task into a /goal Claude can prove. A Claude Code skill." width="100%">
+  <img src="assets/banner.svg" alt="write-goal — one measurable goal with observable proof for Claude Code and Codex." width="100%">
 </p>
 
 <p align="center">
   <a href="https://github.com/edcadet10/write-goal/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/edcadet10/write-goal/ci.yml?branch=main&amp;style=flat-square&amp;label=CI" alt="CI status"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-4ecca3?style=flat-square" alt="MIT license"></a>
   <a href="https://code.claude.com/docs/en/skills"><img src="https://img.shields.io/badge/Claude%20Code-skill-7c5cff?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code skill"></a>
+  <a href="https://learn.chatgpt.com/docs/build-skills"><img src="https://img.shields.io/badge/Codex-skill-4ecca3?style=flat-square" alt="Codex skill"></a>
   <img src="https://img.shields.io/badge/pairs%20with-%2Fgoal-5eead4?style=flat-square" alt="Pairs with /goal">
   <img src="https://img.shields.io/badge/output-one%20provable%20%2Fgoal%20line-f5b14e?style=flat-square" alt="Output: one provable /goal line">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/contributions-welcome-22d3ee?style=flat-square" alt="Contributions welcome"></a>
 </p>
 
-<p align="center"><b>Hand it a rough task. Get back one <code>/goal</code> line that Claude can actually prove it finished.</b></p>
+<p align="center"><b>Turn a rough task into one measurable goal, with the evidence needed to prove it.</b><br>For Claude Code and Codex. No API key or third-party Python packages.</p>
 
 ---
+
+## quick start
+
+Requires Python 3.10+ and Git. The same package installs on Windows, macOS, and Linux.
+
+```bash
+git clone https://github.com/edcadet10/write-goal.git
+cd write-goal
+python install.py --target claude
+# Or install for Codex:
+python install.py --target codex
+```
+
+Use `python3` if that is your Python command. The original `./install.sh`
+entrypoint remains available and forwards the same options.
+
+| Host | Invoke | Result |
+| --- | --- | --- |
+| Claude Code | `/write-goal <rough task>` | One `/goal <condition>` line |
+| Codex | `$write-goal <rough task>` | One plain completion condition for the host's available goal tools |
+
+The skill drafts by default. It starts no loop, executes no checks, and
+replaces no active goal unless you explicitly request activation. It does not
+schedule future work or continue after a session ends.
+
+## before and after
+
+**Your request:** "Draft a goal: all 14 existing parser fixtures pass. Do not
+modify production files. Stop after 9 turns. The verification command is
+`python -m unittest discover -s tests/parser`."
+
+**Codex draft:**
+
+```text
+All 14 existing parser fixtures pass, proven by the actual printed output and exit status 0 from `python -m unittest discover -s tests/parser`. Do not modify production files or weaken checks. After 9 turns, stop and report any unmet criteria without claiming achievement.
+```
+
+In Claude Code the same condition starts with `/goal `. If a check is unknown,
+you get a visible `<verification command>` placeholder to replace before
+activation. If the task has no concrete finish line, you get one question.
 
 ## how it came to life
 
 I was poking at Claude Code's `/goal` command, trying to work out its switches, and somewhere in there it clicked that I'd been ignoring a whole built-in loop. `/goal <condition>` keeps Claude working across turns until the condition is true. I'd been babysitting long tasks by hand the entire time.
 
-Then I hit the catch. A small fast model (Haiku, by default) is the one deciding when you're done, and it can't run commands or open files. It only sees what Claude has already printed into the chat. So "loop until the tests pass" is worthless if Claude never prints the test output, and "until the code is clean" never terminates because nothing makes "clean" true or false. A good goal has to carry its own proof.
+Then I hit the catch. Claude Code's evaluator can't run commands or open files independently. It judges evidence surfaced in the conversation. So "loop until the tests pass" needs actual test output, and "until the code is clean" needs a concrete definition. A good goal has to carry its own proof. See the [official /goal documentation](https://code.claude.com/docs/en/goal).
 
 I didn't want to solve that puzzle by hand every time I started a loop. So I asked for a skill that writes the goal for me: give it a rough task, hand me back one line I can paste. That's `write-goal`. Funny enough, every task in the session where it was born was itself set with `/goal` — including the one that built this.
 
@@ -33,12 +74,12 @@ You run it with a rough task:
 /write-goal migrate the auth module to the new API
 ```
 
-It hands back one `/goal` line with four things built in:
+It hands back one condition (`/goal` in Claude Code) with four things built in:
 
 - a measurable end state, a real signal like an exit code or a file count, never "works" or "done"
 - a proof that shows up in the transcript, a specific command whose output Claude prints
 - the constraints to hold, what must not change on the way there
-- a turn cap, so a stuck loop stops and reports instead of running forever
+- a stopping boundary: your turn cap, budget, or deadline, with 30 turns as the default when none is supplied
 
 If your task is too vague to have a finish line, it asks you exactly one question and then gets on with it. One question, never a quiz.
 
@@ -63,41 +104,78 @@ flowchart LR
     class G out
 ```
 
-## install
+## install locations and updates
 
-From the repo root:
+Claude defaults to `~/.claude/skills/` and respects `CLAUDE_CONFIG_DIR`.
+Codex defaults to `~/.agents/skills/`, or `$CODEX_HOME/skills/` when set.
+These are local installed copies; GitHub is the maintained source of truth.
+See [OpenAI's skill documentation](https://learn.chatgpt.com/docs/build-skills)
+for discovery and invocation. Newly installed Codex skills are available on
+your next turn; restart if your host has not refreshed its list.
+
+To choose a skills parent directory:
 
 ```bash
-./install.sh
+python install.py --target codex --dest "/path with spaces/skills"
 ```
 
-It drops the skill into `~/.claude/skills/` and tells you how to call it. Or do it by hand:
+An identical reinstall makes no changes. A different installed copy is
+preserved unless you explicitly pass `--force`. Review local edits first;
+`--force` replaces this skill's directory, including obsolete files, while
+leaving neighboring skills alone.
 
 ```bash
-cp -r skills/write-goal ~/.claude/skills/
+git pull --ff-only
+python install.py --target codex --force
 ```
 
-No hook, no settings to edit. It runs when you call `/write-goal`, and not a moment otherwise.
+Hosts may also select the skill when your request matches its description.
+Claude's `/goal` command requires workspace trust and permitted hooks; drafting
+a condition does not change host permissions. Codex does not use those
+Claude-specific requirements.
 
 ## a real example
 
 Rough task in:
 
 ```text
-/write-goal utils.js is too big, split it
+/write-goal split src/utils.js into modules under 200 lines; preserve exported signatures. The project defines npm run build and npm test.
 ```
 
 `/goal` line out:
 
 ```text
-/goal src/utils.js is split into focused modules each under 200 lines with all imports updated, proven in the transcript by `npm run build` and `npm test` both exiting 0 with the same passing-test count as before. Do not change any exported function signature. Stop after 25 turns and report what remains.
+/goal src/utils.js is split into modules each under 200 lines with all imports updated, proven by printed line counts and actual `npm run build` and `npm test` output with exit status 0. Do not change any exported function signature or weaken tests. After 30 turns, stop and report any unmet criteria without claiming achievement.
 ```
 
-Read it back and you can see the four ingredients: the end state (modules under 200 lines, imports updated), the proof Claude has to print (`build` and `test` both exit 0, test count unchanged), the constraint (no signature changes), and the cap (25 turns, then report).
+The size limit and commands came from the request. The draft preserves the
+exports, asks for actual evidence, and stops with an honest status if the cap
+is reached. It never invents a project command to make a goal look executable.
+
+For external outcomes such as stars, sales, or approvals, the skill preserves
+the target and deadline, names the authoritative metric, and distinguishes
+work completed from an outcome it cannot guarantee. A deadline is not an
+automatic scheduler, and reaching a time limit is not achievement.
+
+## testing
+
+```bash
+python scripts/check.py
+```
+
+CI exercises real isolated installations on Windows, macOS, and Linux with
+Python 3.10 and 3.12. Tests cover repeat installs, local edits, explicit updates,
+rollback, paths with spaces, environment overrides, and destination boundaries.
+
+Skill behavior is tested separately with fictional drafting requests. See the
+[evaluation guide](evals/README.md) for the cases, response checker, and limits
+of automated grading. Passing package tests is not proof of model behavior.
 
 ## the one rule it never breaks
 
-The proof has to be something Claude prints, not something the evaluator goes and checks. That single fact is what makes goals terminate instead of spinning. Every line the skill writes is built around it.
+The proof has to be actual observed evidence surfaced in the conversation.
+A claim that a check passed is not enough. The draft must also preserve the
+user's constraints, approval gates, and chosen host.
 
 ## contribute
 
@@ -105,7 +183,10 @@ Contributions are welcome. Read the [guide](CONTRIBUTING.md), open an [issue](ht
 
 ## part of my arsenal
 
-One of the skills I lean on daily in Claude Code, published so other people can use it too. If it saves you from one loop that ran twelve turns past done because the goal couldn't tell it was finished, it earned its place.
+Born in Claude Code and now available in Codex too. If it saves you from one
+loop that ran twelve turns past done because the goal couldn't tell it was
+finished, it earned its place. If it helps you, consider starring the repository
+and sharing a fictional before-and-after example in an issue.
 
 ## license
 
