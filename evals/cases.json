@@ -1,0 +1,88 @@
+[
+  {
+    "id": "claude-known-check",
+    "host": "claude",
+    "request": "Draft a goal: migrate every call site in src/auth to client API v2. Do not modify files outside src/auth. Stop after 12 turns.",
+    "context": "The user supplies the verification command: python -m unittest discover -s tests/auth. No commands have been run.",
+    "required": ["src/auth", "v2", "python -m unittest discover -s tests/auth", "Do not modify files outside src/auth", "12 turns"],
+    "forbidden": ["npm test"],
+    "placeholder": false
+  },
+  {
+    "id": "unknown-verification",
+    "host": "claude",
+    "request": "Write a goal to convert every PNG in assets/icons to WebP without deleting the original PNGs.",
+    "context": "No project files or verification commands are available.",
+    "required": ["assets/icons", "WebP", "PNG", "30 turns"],
+    "forbidden": ["npm test", "npx", "cwebp", "convert "],
+    "placeholder": true
+  },
+  {
+    "id": "vague-task",
+    "host": "claude",
+    "request": "Make it better.",
+    "context": "There is no prior task or project context.",
+    "question": true
+  },
+  {
+    "id": "missing-task",
+    "host": "codex",
+    "request": "$write-goal",
+    "context": "There is no prior task or project context.",
+    "question": true
+  },
+  {
+    "id": "codex-draft-only",
+    "host": "codex",
+    "request": "Use $write-goal to draft a condition: all 14 existing parser fixtures pass. Do not modify production files. Do not activate anything. Stop after 9 turns.",
+    "context": "The user supplies python -m unittest discover -s tests/parser as the real verification command.",
+    "required": ["14", "python -m unittest discover -s tests/parser", "Do not modify production files", "9 turns"],
+    "forbidden": ["modify only tests", "/goal", "activated", "goal is active"],
+    "placeholder": false
+  },
+  {
+    "id": "changing-backlog",
+    "host": "codex",
+    "request": "Draft a goal to process every invoice currently queued exactly once, with no duplicate charges. Keep audit records. Stop after 18 turns.",
+    "context": "No queue schema, query, endpoint, or processing command has been supplied.",
+    "required": ["18 turns", "audit"],
+    "forbidden": ["SELECT", "invoices.status", "npm test"],
+    "placeholder": true
+  },
+  {
+    "id": "external-deadline",
+    "host": "codex",
+    "request": "Draft a goal for my GitHub repo example/goal-kit to reach 1,000 genuine stars by the end of this year. Use only authorized GitHub changes. No outreach or paid promotion.",
+    "context": "Today is 2026-11-11 in America/New_York. The user supplied this check: gh api repos/example/goal-kit --jq .stargazers_count. Current count is 0. No scheduler is available.",
+    "required": ["1,000", "gh api repos/example/goal-kit --jq .stargazers_count", "No outreach or paid promotion"],
+    "required_any": [["2026-12-31", "December 31, 2026", "31 December 2026"]],
+    "forbidden": ["30 turns", "I guarantee", "I have scheduled", "/goal "],
+    "placeholder": false
+  },
+  {
+    "id": "human-approval",
+    "host": "claude",
+    "request": "Draft a goal: prepare release 2.0 for a human to approve. Do not publish or approve the release yourself. Stop after 10 turns.",
+    "context": "No repository files or verification commands are available.",
+    "required": ["2.0", "Do not publish or approve the release yourself", "10 turns"],
+    "forbidden": ["gh release create", "npm publish"],
+    "placeholder": true
+  },
+  {
+    "id": "explicit-host-override",
+    "host": "claude",
+    "request": "I am in Codex, but write a Claude Code /goal line: every Markdown link in docs resolves. Keep existing prose. Stop after 7 turns.",
+    "context": "The user supplies python scripts/check_links.py as the verification command.",
+    "required": ["docs", "python scripts/check_links.py", "Keep existing prose", "7 turns"],
+    "placeholder": false
+  },
+  {
+    "id": "no-invented-threshold",
+    "host": "codex",
+    "request": "Draft a goal to split src/utils.js into smaller modules while preserving its exports.",
+    "context": "No size limit, test commands, or project files are available.",
+    "required": ["src/utils.js", "exports", "30 turns"],
+    "forbidden": ["200 lines", "100 lines", "npm test", "npm run build"],
+    "placeholder": true
+  }
+]
