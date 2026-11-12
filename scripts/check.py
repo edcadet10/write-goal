@@ -23,7 +23,7 @@ def validate() -> None:
     assert body.strip() and len(text.splitlines()) < 500
     assert not re.search(r"\b(?:TODO|FIXME)\b", text), "Unfinished skill placeholder"
     ET.parse(ROOT / "assets/banner.svg")
-    documents = list(ROOT.glob("*.md")) + list((ROOT / "skills/write-goal").rglob("*.md"))
+    documents = sorted(path for path in ROOT.rglob("*.md") if ".git" not in path.relative_to(ROOT).parts)
     for document in documents:
         content = document.read_text(encoding="utf-8")
         targets = re.findall(r"!?\[[^]]*\]\(([^)]+)\)", content)
