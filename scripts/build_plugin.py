@@ -19,6 +19,7 @@ FILES = {
     "LICENSE": "LICENSE",
     "skills/write-goal/SKILL.md": "skills/write-goal/SKILL.md",
     "skills/write-goal/agents/openai.yaml": "skills/write-goal/agents/openai.yaml",
+    "skills/write-goal/references/hosts.md": "skills/write-goal/references/hosts.md",
 }
 
 

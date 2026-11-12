@@ -65,8 +65,9 @@ outputs need semantic review; text matching alone does not prove correctness.
 
 ## Design guardrails
 
-- Emit exactly one copy-paste condition, with `/goal` only for Claude Code.
-- Keep output below Claude Code's 4,000-character goal limit.
+- Keep shared instructions provider-neutral. Select optional formatting by the destination application, not the model brand.
+- Emit exactly one copy-paste condition; explicit plain text overrides a native wrapper.
+- Keep output under 4,000 characters as a portable default and respect stricter known application limits.
 - Require transcript-visible proof, not a check the evaluator must run itself.
 - Preserve explicit constraints and the user's stopping boundary; do not confuse a cap or deadline with success.
 - Prefer actual project commands when they can be discovered cheaply.

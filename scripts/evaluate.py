@@ -29,7 +29,8 @@ def grade(case: dict, response: str) -> list[str]:
         errors.append("Expected a single nonempty goal line")
     if len(goal) >= 4000:
         errors.append("Goal must be under 4,000 characters")
-    if goal.startswith("/goal ") != (case["host"] == "claude"):
+    expected_format = case.get("output_format", "claude" if case["host"] == "claude" else "plain")
+    if goal.startswith("/goal ") != (expected_format == "claude"):
         errors.append("Wrong host syntax")
     outside = response[:block.start()] + response[block.end():]
     if len([line for line in outside.splitlines() if line.strip()]) > 2:

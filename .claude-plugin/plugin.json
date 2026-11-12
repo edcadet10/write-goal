@@ -1,8 +1,8 @@
 {
   "name": "write-goal",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "displayName": "Write Goal",
-  "description": "Draft one measurable completion condition with observable proof and preserved constraints.",
+  "description": "Provider-neutral goal writing with observable proof and optional application adapters.",
   "author": {
     "name": "Ed Cadet",
     "url": "https://github.com/edcadet10"
@@ -10,6 +10,12 @@
   "homepage": "https://github.com/edcadet10/write-goal",
   "repository": "https://github.com/edcadet10/write-goal",
   "license": "MIT",
-  "keywords": ["goals", "claude-code", "codex", "agent-skills"],
+  "keywords": [
+    "goals",
+    "ai-agnostic",
+    "agent-skills",
+    "claude-code",
+    "codex"
+  ],
   "icon": "./assets/icon.png"
 }

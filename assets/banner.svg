@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="write-goal — one measurable goal with observable proof for Claude Code and Codex.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img" aria-label="write-goal — AI-agnostic goal writing with observable proof.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0b0e14"/>
@@ -32,7 +32,7 @@
         font-size="30" font-weight="500" fill="#9aa4b2">one measurable goal with observable proof</text>
 
   <text x="94" y="276" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-        font-size="17" fill="#9aa4b2">claude code + codex &#183; draft a finish line you can verify</text>
+        font-size="17" fill="#9aa4b2">AI-agnostic instructions &#183; a finish line you can verify</text>
 
   <!-- motif: a target with a verified center — define a finish line, prove you hit it -->
   <g transform="translate(1080,160)">

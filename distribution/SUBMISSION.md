@@ -1,6 +1,6 @@
 # Write Goal — directory submission packet
 
-Prepared for version 0.3.0. This packet is a reviewable draft; no directory
+Prepared for version 0.4.0. This packet is a reviewable draft; no directory
 submission, publisher verification, or policy attestation has been completed.
 The maintained source remains [edcadet10/write-goal](https://github.com/edcadet10/write-goal).
 
@@ -25,9 +25,9 @@ an official endorsement, a ranking, or guaranteed task completion.
 
 ## What a reviewer can verify
 
-Write Goal drafts a single completion condition with a measurable end state,
+Write Goal uses provider-neutral instructions to draft a single completion condition with a measurable end state,
 observable proof, preserved constraints, and a stopping boundary. Claude Code
-receives a `/goal` prefix; Codex receives plain completion text. Unknown checks
+uses an optional `/goal` adapter; Codex and generic applications receive plain completion text. Unknown checks
 remain placeholders. Drafting does not activate a goal or schedule future work.
 
 The package declares no MCP servers, hooks, external service, or plugin sign-in.
@@ -35,7 +35,7 @@ Model access and tool permissions belong to the host. The included instructions
 can read available project context to ground a draft, so users should follow
 their host's data and workspace policies.
 
-The [behavioral evaluation record](../evals/results/2026-11-11.md) includes actual
+The [behavioral evaluation record](../evals/results/2026-11-12.md) includes actual
 fictional drafting outputs and observed corrections. The native installation
 checks use real clients with temporary profiles. Those checks do not establish
 model behavior in every host; live Claude model inference remains unverified
