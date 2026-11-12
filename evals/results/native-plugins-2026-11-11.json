@@ -1,0 +1,24 @@
+{
+  "claim": "The same GitHub-hosted catalog can install the unchanged skill in Claude Code and Codex.",
+  "kill_criterion": "Either client rejects the catalog, fails to enable the plugin, or caches different skill bytes.",
+  "source": "local checkout before GitHub publication",
+  "skill_git_blob": "196e128a21f0b6c14c2ed5f469a827a0082dd0ae",
+  "skill_sha256": "23a19bbf26f32167dcd87d51f02445630a3bcc116b5fcc64d47bbcc07263c4bf",
+  "claude": {
+    "version": "2.1.316",
+    "strict_manifest_validation": true,
+    "installed": true,
+    "inventory_skills": [
+      "write-goal"
+    ],
+    "cached_skill_matches": true
+  },
+  "codex": {
+    "version": "0.166.0",
+    "installed": true,
+    "enabled": true,
+    "cached_skill_matches": true
+  },
+  "scope": "Fresh temporary host profiles; no model inference. Not a measurement of star growth or model behavior.",
+  "remote_github_installation": "pending"
+}

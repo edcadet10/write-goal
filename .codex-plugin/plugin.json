@@ -1,0 +1,14 @@
+{
+  "name": "write-goal",
+  "version": "0.2.0",
+  "description": "Draft one measurable completion condition with observable proof and preserved constraints.",
+  "author": {
+    "name": "Ed Cadet",
+    "url": "https://github.com/edcadet10"
+  },
+  "homepage": "https://github.com/edcadet10/write-goal",
+  "repository": "https://github.com/edcadet10/write-goal",
+  "license": "MIT",
+  "keywords": ["goals", "claude-code", "codex", "agent-skills"],
+  "skills": "./skills/"
+}

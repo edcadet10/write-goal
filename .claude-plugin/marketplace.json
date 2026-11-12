@@ -1,0 +1,14 @@
+{
+  "name": "write-goal",
+  "description": "Provable goal drafts for Claude Code and Codex, maintained on GitHub.",
+  "owner": {
+    "name": "Ed Cadet"
+  },
+  "plugins": [
+    {
+      "name": "write-goal",
+      "source": "./",
+      "description": "Turn a rough task into one measurable goal with observable proof."
+    }
+  ]
+}
