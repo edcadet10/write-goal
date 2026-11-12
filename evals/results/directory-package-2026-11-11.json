@@ -1,0 +1,40 @@
+{
+  "version": "0.3.0",
+  "scope": "Local readiness checks only; no portal submission, attestation, or approval.",
+  "claude_directory_precheck": {
+    "client": "2.1.316",
+    "strict": true,
+    "success": true,
+    "findings": [],
+    "incomplete": false
+  },
+  "icon": {
+    "format": "PNG",
+    "dimensions": [
+      512,
+      512
+    ],
+    "source": "assets/icon.svg",
+    "review": "Rendered from the existing target motif and visually inspected."
+  },
+  "minimal_archive": {
+    "files": 8,
+    "sha256": "59161d8c6add89c392b1193975ff649cbe2d09801b597116cc429e6438ff0b20",
+    "model_inference": false,
+    "native_claude_install": "passed (2.1.316)",
+    "native_codex_install": "passed (0.166.0)",
+    "cached_skill_content": "matches source after text newline normalization"
+  },
+  "negative_controls": [
+    "A mismatched host version prevents archive creation.",
+    "A missing required icon prevents archive creation.",
+    "Unrelated private files and caches are absent from the archive.",
+    "Output inside the checkout is refused."
+  ],
+  "unverified": [
+    "Publisher eligibility and verified identity.",
+    "Portal validation and name availability.",
+    "External review and policy attestations.",
+    "Effect on genuine GitHub star growth."
+  ]
+}
