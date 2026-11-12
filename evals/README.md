@@ -25,3 +25,6 @@ Record the skill revision, model/host when known, actual responses, reviewer
 observations, and failures in the PR. No ranking claim follows from this small
 suite. Add cases for demonstrated failures instead of growing a speculative
 catalog. Use only fictional or explicitly shareable data.
+
+The [2026-11-11 record](results/2026-11-11.md) preserves the observed failures,
+corrections, raw outputs, and final affected-case retests.
