@@ -2,7 +2,7 @@
 
 `write-goal` is committed to a welcoming, safe, and constructive open-source
 community. Everyone participating in project spaces is expected to follow this
-code, regardless of role or experience.
+code, regardless of role, experience, or choice of AI tools and providers.
 
 ## Expected behavior
 

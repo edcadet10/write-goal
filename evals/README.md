@@ -1,5 +1,9 @@
 # Behavioral evaluation
 
+The evaluation protocol is provider-neutral. Use an independent assistant or
+reviewer of your choice; no named AI service is required. Case application names
+select expected output formatting, not the evaluator's model provider.
+
 Package CI cannot establish whether a model follows a skill. These fourteen
 fictional requests exercise known and unknown checks, vague or missing tasks,
 host selection, exact constraints, changing queues, external deadlines, human
@@ -31,3 +35,5 @@ The [2026-11-11 record](results/2026-11-11.md) preserves the observed failures,
 corrections, raw outputs, and final affected-case retests.
 The [2026-11-12 record](results/2026-11-12.md) covers the provider-neutral shared
 workflow and optional application adapters.
+Those historical records identify the tools actually used in their runs. They
+do not make those tools prerequisites for later evaluations.

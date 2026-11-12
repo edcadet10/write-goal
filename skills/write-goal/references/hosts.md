@@ -1,5 +1,9 @@
 # Optional application adapters
 
+No listed application is required for the plain-text workflow. Use the shared
+instructions with your chosen assistant and select an adapter only for a known
+destination interface.
+
 These adapters change presentation and activation, not the shared completion
 criteria. Choose the destination application from the request or environment.
 A model's name does not identify the application. Explicit plain-text output

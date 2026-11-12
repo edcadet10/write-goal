@@ -1,6 +1,6 @@
 # Write Goal — directory submission packet
 
-Prepared for version 0.4.0. This packet is a reviewable draft; no directory
+Prepared for version 0.4.1. This packet is a reviewable draft; no directory
 submission, publisher verification, or policy attestation has been completed.
 The maintained source remains [edcadet10/write-goal](https://github.com/edcadet10/write-goal).
 
@@ -18,17 +18,21 @@ The maintained source remains [edcadet10/write-goal](https://github.com/edcadet1
 | License | MIT |
 | Icon | Square 512 × 512 PNG; source SVG and PNG included |
 
-The complete listing description and starter prompts are in
-[the Codex manifest](../.codex-plugin/plugin.json). The Claude manifest uses
-the same package identity, version, and publisher. The listing does not claim
-an official endorsement, a ranking, or guaranteed task completion.
+**Prepared description:** Turn a rough task into one measurable completion
+condition with observable proof, preserved constraints, and a stopping boundary.
+Use the shared instructions as prompt context in your chosen assistant; native
+application integrations are optional. Drafting does not activate a goal or
+schedule future work.
+
+The application manifests carry this shared package's identity and presentation
+in their respective native formats. The listing does not claim an official
+endorsement, a ranking, or guaranteed task completion.
 
 ## What a reviewer can verify
 
-Write Goal uses provider-neutral instructions to draft a single completion condition with a measurable end state,
-observable proof, preserved constraints, and a stopping boundary. Claude Code
-uses an optional `/goal` adapter; Codex and generic applications receive plain completion text. Unknown checks
-remain placeholders. Drafting does not activate a goal or schedule future work.
+Write Goal's shared workflow produces plain completion text. Unknown checks
+remain placeholders. A native application adapter may wrap that text only for
+a known destination interface; a model's brand does not select formatting.
 
 The package declares no MCP servers, hooks, external service, or plugin sign-in.
 Model access and tool permissions belong to the host. The included instructions
@@ -38,8 +42,9 @@ their host's data and workspace policies.
 The [behavioral evaluation record](../evals/results/2026-11-12.md) includes actual
 fictional drafting outputs and observed corrections. The native installation
 checks use real clients with temporary profiles. Those checks do not establish
-model behavior in every host; live Claude model inference remains unverified
-because the available local credential returned 401.
+model behavior in every host. The recorded environment and any unverified
+inference behavior are disclosed in the evaluation record; they are not
+prerequisites for using the shared prompt workflow.
 
 ## Package and checks
 
@@ -50,12 +55,15 @@ includes the host manifests, complete skill, icon assets, MIT license, and
 package README. Development scripts, caches, repository metadata, and unrelated
 files are excluded. The source is [build_plugin.py](../scripts/build_plugin.py).
 
-The archive is for skills-only upload or manual distribution. The GitHub-hosted
-catalog remains the native installation route. Required checks are the portable
-test suite, cold native installs, complete package-content comparison, and
-`claude plugin validate --strict --profile directory .`.
+The archive is for skills-only upload or manual distribution. Its portable
+checks cover complete package contents and referenced resources. Optional native
+integration checks are scoped to the selected application. The shared prompt
+workflow does not require either native client or a directory listing.
 
-## External steps still required
+## Optional directory routes
+
+These requirements apply to external publication in the named directory, not
+to the provider-neutral skill or its use as prompt context.
 
 - Explicit authorization to submit to either directory, including any packaged
   copy uploaded for review.

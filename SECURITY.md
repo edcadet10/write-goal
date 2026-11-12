@@ -1,5 +1,9 @@
 # Security policy
 
+This policy applies to the shared instructions, packages, and optional adapters
+regardless of the AI model or provider. Include the application and relevant
+versions in a report when they affect the reproduction.
+
 ## Supported version
 
 The latest commit on `main` is supported. Older snapshots do not receive

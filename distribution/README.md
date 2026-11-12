@@ -2,11 +2,12 @@
 
 Turn a rough task into one measurable completion condition with observable
 proof, preserved constraints, and a stopping boundary. Write Goal has AI-agnostic
-instructions with optional Claude Code and Codex application adapters. It drafts
+instructions usable as prompt context in your chosen assistant. It drafts
 by default; activating a goal requires an explicit request.
 
 Ask Write Goal to draft or refine a completion condition. Plain text is the
-shared default; the native Claude Code adapter adds `/goal`. If the task has no
+shared default. Optional application adapters add native formatting when requested.
+If the task has no
 concrete finish line, the skill asks one clarifying question. Unknown checks
 remain visible placeholders to replace before activation. The destination
 application determines syntax independently of the AI model's brand.
