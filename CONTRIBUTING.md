@@ -43,6 +43,16 @@ model. Use `--claude` or `--codex` to provide a client path when needed.
 To test a GitHub branch before merging, add
 `--source edcadet10/write-goal --ref <branch>`.
 
+For directory packaging, use `python scripts/build_plugin.py --output <path.zip>`
+with a destination outside the checkout. The build includes only an explicit
+file list and creates a checksum. Review the
+[submission packet](distribution/SUBMISSION.md) before any external submission.
+An archive build or a local directory check does not submit or approve a plugin.
+
+The listing icon is maintained in `assets/icon.svg`; its 512-pixel PNG is a
+rendered copy of that vector. Rendering is a maintainer operation, separate from
+the installer and dependency-free package checks.
+
 For behavior changes, include at least two fictional examples in the pull
 request:
 

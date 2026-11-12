@@ -1,6 +1,6 @@
 {
   "name": "write-goal",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Draft one measurable completion condition with observable proof and preserved constraints.",
   "author": {
     "name": "Ed Cadet",
@@ -10,5 +10,21 @@
   "repository": "https://github.com/edcadet10/write-goal",
   "license": "MIT",
   "keywords": ["goals", "claude-code", "codex", "agent-skills"],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Write Goal",
+    "shortDescription": "A finish line you can prove",
+    "longDescription": "Turn a rough task into one measurable completion condition with observable proof, preserved constraints, and a stopping boundary. Drafts by default; activation requires an explicit request. Unknown checks stay visible as placeholders.",
+    "developerName": "Ed Cadet",
+    "category": "Productivity",
+    "capabilities": ["Draft a goal", "Preserve constraints", "Name observable proof"],
+    "websiteURL": "https://github.com/edcadet10/write-goal",
+    "supportURL": "https://github.com/edcadet10/write-goal/issues",
+    "defaultPrompt": [
+      "Draft a measurable completion condition for my task.",
+      "Refine this goal without changing its constraints."
+    ],
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png"
+  }
 }
