@@ -37,8 +37,11 @@ python scripts/check_plugins.py
 ```
 
 The native smoke test installs from the checkout, checks the host inventory,
-and compares the installed skill bytes with the source. It does not invoke a
+and compares the installed package content with the source after normalizing
+text line endings. It does not invoke a
 model. Use `--claude` or `--codex` to provide a client path when needed.
+To test a GitHub branch before merging, add
+`--source edcadet10/write-goal --ref <branch>`.
 
 For behavior changes, include at least two fictional examples in the pull
 request:
